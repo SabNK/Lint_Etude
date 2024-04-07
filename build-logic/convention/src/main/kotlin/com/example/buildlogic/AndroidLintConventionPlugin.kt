@@ -37,7 +37,7 @@ class AndroidLintConventionPlugin : Plugin<Project> {
             with(pluginManager){
                 apply(libs.findPlugin("ktlint").asString())
                 //apply("org.jlleitschuh.gradle.ktlint")
-                apply(libs.findPlugin("detekt").asString())
+                //apply(libs.findPlugin("detekt").asString())
             }
         }
     }

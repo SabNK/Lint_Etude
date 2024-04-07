@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    alias(libs.plugins.jetbrainsKotlinJvm)
+    //alias(libs.plugins.jetbrainsKotlinJvm)
 }
 
 java {

@@ -1,3 +1,4 @@
+@file:Suppress("UnstableApiUsage")
 pluginManagement {
     includeBuild("build-logic")
     repositories {
@@ -18,8 +19,11 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
     }
 }
 

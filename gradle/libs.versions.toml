@@ -1,6 +1,8 @@
 [versions]
 agp = "8.3.1"
-kotlin = "1.9.22"
+
+kotlin = "1.9.22" #https://docs.gradle.org/current/userguide/compatibility.html
+dsl = "4.3.1"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -15,10 +17,11 @@ androidGradlePlugin = "8.3.0"
 androidTools = "31.3.0"
 
 #From SabNK
-ktlint = "12.0.3"
+ktlint = "12.1.0"
 kotlinCompilerExtensionVersion = "1.5.10" #my attempt to use in compose
 detekt = "1.23.6"
 konsist = "0.15.1"
+android-native-lint = "8.3.1"
 
 
 [libraries]
@@ -51,14 +54,20 @@ lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.re
 #From SabNK
 konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
 ktlint = {group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint"}
+detekt = {group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt"}
+android-native-lint = { group = "com.android.lint", name ="com.android.lint.gradle.plugin", version.ref = "android-native-lint"}
+
+
 
 [plugins]
+kotlinGradlePlugin = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "dsl" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
 # Plugins defined by this project
 android-lint = { id = "com.example.convention.android.lint", version = "unspecified" }
+android-native-lint = { id = "com.android.lint", version.ref = "android-native-lint"}
 
 # From SabNK
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
