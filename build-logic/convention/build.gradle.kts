@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.detekt)
 
 }
 
@@ -24,7 +25,9 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     runtimeOnly(libs.android.native.lint)
     runtimeOnly(libs.ktlint)
-    runtimeOnly(libs.detekt)
+    //implementation(libs.bundles.detekt) //compileOnly
+    implementation(libs.detekt)
+    //implementation(libs.detekt.compose)
 }
 
 tasks {

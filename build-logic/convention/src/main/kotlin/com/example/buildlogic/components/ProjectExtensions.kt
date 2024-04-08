@@ -16,17 +16,36 @@
 
 package com.example.buildlogic.components
 
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.named
 import org.gradle.plugin.use.PluginDependency
 import java.util.Optional
 
 val Project.libs
     get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-fun Optional<Provider<PluginDependency>>.asString() = with(this.get().get()) {
-    "$pluginId"//:$version"
+fun Optional<Provider<PluginDependency>>.asString() = this.get().get().pluginId
+
+internal fun Project.configureDetekt(extension: DetektExtension) = extension.apply {
+    tasks.named<Detekt>("detekt") {
+        reports {
+            xml.required.set(true)
+            // observe findings in your browser with structure and code snippets
+            html.required.set(true)
+            // similar to the console output, contains issue signature to manually edit baseline files
+            txt.required.set(true)
+            sarif.required.set(true)
+            // simple Markdown format
+            md.required.set(true)
+        }
+    }
+    /*dependencies {
+        "detektPlugins"(libs.findLibrary("detekt-formatting").get())
+    }*/
 }
