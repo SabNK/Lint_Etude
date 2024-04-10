@@ -4,6 +4,7 @@ plugins {
     //alias(libs.plugins.android.lint) apply false
 }
 println("hello============================")
+println("$rootDir")
 
 //detekt {
 //    source.setFrom("src/main/java", "src/main/kotlin")

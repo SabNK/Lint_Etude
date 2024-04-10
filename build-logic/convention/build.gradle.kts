@@ -7,6 +7,8 @@ plugins {
 }
 
 group = "com.example.buildlogic"
+println(":convention projectDir $projectDir")
+println(":convention rootDir $rootDir")
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -23,7 +25,7 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.kotlin.gradlePlugin)
-    runtimeOnly(libs.android.native.lint)
+    runtimeOnly(libs.android.native.lint) //check with NIA
     runtimeOnly(libs.ktlint)
     //implementation(libs.bundles.detekt) //compileOnly
     implementation(libs.detekt)
@@ -42,6 +44,13 @@ gradlePlugin {
         register("androidLint") {
             id = "com.example.convention.android.lint"
             implementationClass = "com.example.buildlogic.AndroidLintConventionPlugin"
+        }
+
+
+        //components supportive plugins
+        register("detektLint") {
+            id = "com.example.buildlogic.detekt.lint"
+            implementationClass = "com.example.buildlogic.components.DetektLintPlugin"
         }
     }
 }

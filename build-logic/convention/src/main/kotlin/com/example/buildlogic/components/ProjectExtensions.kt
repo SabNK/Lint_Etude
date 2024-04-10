@@ -22,6 +22,7 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
 import org.gradle.plugin.use.PluginDependency
@@ -33,6 +34,12 @@ val Project.libs
 fun Optional<Provider<PluginDependency>>.asString() = this.get().get().pluginId
 
 internal fun Project.configureDetekt(extension: DetektExtension) = extension.apply {
+    buildUponDefaultConfig = true // preconfigure defaults.
+    allRules = false // activate all available (even unstable) rules.
+    autoCorrect = false // To enable or disable auto formatting.
+    parallel = true // To enable or disable parallel execution of detekt on multiple submodules.
+    config.setFrom("${rootDir}/config/detekt/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior.
+    baseline = file("${rootDir}/config/detekt/detekt-baseline.xml") // a way of suppressing issues before introducing detekt.
     tasks.named<Detekt>("detekt") {
         reports {
             xml.required.set(true)
@@ -45,7 +52,12 @@ internal fun Project.configureDetekt(extension: DetektExtension) = extension.app
             md.required.set(true)
         }
     }
-    /*dependencies {
-        "detektPlugins"(libs.findLibrary("detekt-formatting").get())
-    }*/
+    dependencies {
+        //"detektPlugins"(libs.findLibrary("detekt-formatting").get())
+        "detektPlugins"(libs.findLibrary("detekt-compose").get())
+    }
 }
+
+internal fun Project.isAnroidApplication() = pluginManager.hasPlugin(libs.findPlugin("android-application").asString())
+
+internal fun Project.isAnroidLibrary() = pluginManager.hasPlugin(libs.findPlugin("android-library").asString())

@@ -67,13 +67,17 @@ detekt = ["detekt", "detekt-compose"]
 
 [plugins]
 kotlinGradlePlugin = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "dsl" }
-androidApplication = { id = "com.android.application", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
 # Plugins defined by this project
 android-lint = { id = "com.example.convention.android.lint", version = "unspecified" }
-android-native-lint = { id = "com.android.lint", version.ref = "android-native-lint"}
+android-native-lint = { id = "com.android.lint", version.ref = "android-native-lint" }
+
+# Supportive plugins
+detekt-lint = { id = "com.example.buildlogic.detekt.lint", version = "unspecified" }
 
 # From SabNK
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
