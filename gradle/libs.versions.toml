@@ -1,8 +1,9 @@
 [versions]
-agp = "8.3.1"
+gradle = "8.7" #see /gradle/wrapper/gradle-wrapper.properties
+agp = "8.3.1" #https://developer.android.com/build/releases/gradle-plugin
 
 kotlin = "1.9.22" #https://docs.gradle.org/current/userguide/compatibility.html
-dsl = "4.3.1"
+dsl = "4.3.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -10,7 +11,7 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.7.0"
 composeBom = "2024.04.00"
-jetbrainsKotlinJvm = "1.9.22"
+
 
 #From NIA
 androidGradlePlugin = "8.3.0"
@@ -23,6 +24,8 @@ detekt = "1.23.6"
 konsist = "0.15.1"
 android-native-lint = "8.3.1"
 detektCompose = "0.3.13" #nacho lopez
+spotless = "6.25.0"
+jacoco = "0.8.12"
 
 
 [libraries]
@@ -46,7 +49,7 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 work-testing = { group = "androidx.work", name = "work-testing", version = "2.9.0" }
-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" } #https://kotlinlang.org/docs/whatsnew18.html
 
 lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "androidTools" }
 lint-checks = { group = "com.android.tools.lint", name = "lint-checks", version.ref = "androidTools" }
@@ -58,7 +61,7 @@ ktlint = {group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref 
 detekt = {group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt"}
 android-native-lint = { group = "com.android.lint", name ="com.android.lint.gradle.plugin", version.ref = "android-native-lint"}
 detekt-compose = { group = "io.nlopez.compose.rules", name = "detekt", version.ref = "detektCompose"}
-
+spotless = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
 
@@ -66,19 +69,22 @@ detekt = ["detekt", "detekt-compose"]
 
 
 [plugins]
-kotlinGradlePlugin = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "dsl" }
+kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "dsl" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
 # Plugins defined by this project
 android-lint = { id = "com.example.convention.android.lint", version = "unspecified" }
-android-native-lint = { id = "com.android.lint", version.ref = "android-native-lint" }
+android-code-coverage = { id = "com.example.convention.android.code.coverage", version = "unspecified" }
 
 # Supportive plugins
 detekt-lint = { id = "com.example.buildlogic.detekt.lint", version = "unspecified" }
+spotless-lint = { id = "com.example.buildlogic.spotless.lint", version = "unspecified" }
 
 # From SabNK
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+android-native-lint = { id = "com.android.lint", version.ref = "android-native-lint" }

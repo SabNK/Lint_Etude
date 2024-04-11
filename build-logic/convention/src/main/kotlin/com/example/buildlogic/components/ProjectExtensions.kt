@@ -61,3 +61,5 @@ internal fun Project.configureDetekt(extension: DetektExtension) = extension.app
 internal fun Project.isAnroidApplication() = pluginManager.hasPlugin(libs.findPlugin("android-application").asString())
 
 internal fun Project.isAnroidLibrary() = pluginManager.hasPlugin(libs.findPlugin("android-library").asString())
+
+internal fun Project.isAndroidModule() = isAnroidLibrary() || isAnroidApplication()

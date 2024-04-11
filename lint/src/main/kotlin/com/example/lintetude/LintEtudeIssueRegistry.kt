@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2024 The Android Open Source Project
  *
@@ -14,31 +15,31 @@
  * limitations under the License.
  */
 
-package com.examples.lint
+package com.example.lintetude
 
 import com.android.tools.lint.client.api.IssueRegistry
 import com.android.tools.lint.client.api.Vendor
 import com.android.tools.lint.detector.api.CURRENT_API
-import com.example.lint.TestMethodNameDetector
-import com.example.lint.designsystem.DesignSystemDetector
-
-
+import com.example.lintetude.designsystem.DesignSystemDetector
 
 class LintEtudeIssueRegistry : IssueRegistry() {
-
-    override val issues = listOf(
-        DesignSystemDetector.ISSUE,
-        TestMethodNameDetector.FORMAT,
-        TestMethodNameDetector.PREFIX,
-    )
+    override val issues =
+        listOf(
+            DesignSystemDetector.ISSUE,
+            TestMethodNameDetector.FORMAT,
+            TestMethodNameDetector.PREFIX,
+        )
 
     override val api: Int = CURRENT_API
 
     override val minApi: Int = 12
 
-    override val vendor: Vendor = Vendor(
-        vendorName = "Lint Etude",
-        feedbackUrl = "https://github.com/android/nowinandroid/issues", //ToDo Replace
-        contact = "https://github.com/android/nowinandroid", //ToDo Replace
-    )
+    override val vendor: Vendor =
+        Vendor(
+            vendorName = "Lint Etude",
+            feedbackUrl = "https://github.com/android/nowinandroid/issues",
+            // ToDo Replace
+            contact = "https://github.com/android/nowinandroid",
+            // ToDo Replace
+        )
 }

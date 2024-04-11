@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.lint)
+    alias(libs.plugins.android.code.coverage)
 }
 
 android {

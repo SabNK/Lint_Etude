@@ -2,7 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `java-library`
-    //kotlin("jvm")
+
+    // kotlin("jvm")
     `kotlin-dsl`
     alias(libs.plugins.android.lint)
 }
